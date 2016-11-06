@@ -4,9 +4,9 @@ var $kill = $("#killCat");
 var $color = $("#colorSubmit");
 var $write = $("#colorWrite");
 */
-var onSuccess = function(data, status) {
-    $("#result").html(data);
-};
+// var onSuccess = function(data, status) {
+//    $("#result").load("/ingredients");
+//};
 
 var onError = function(data, status) {
   console.log("status", status);
@@ -18,7 +18,7 @@ $new.on("submit",function(event) {
     event.stopImmediatePropagation();
     var name = $new.find("[name='name']").val();
     var price = $new.find("[name='price']").val();
-    $.post("ingredients", {
+    $.post("ingredients/add", {
         name: name,
         price: price
     })
@@ -26,9 +26,7 @@ $new.on("submit",function(event) {
          console.log('success', data);
      })
      .error(onError);
-    $.get("ingredients") //working fine
-     .done(onSuccess)
-     .error(onError);
+    $("#result").load("/ingredientsList");
 });
 
 /* $list.on("click", function(event) {

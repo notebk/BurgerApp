@@ -32,4 +32,16 @@ ingredient.getIngredientsPOST = function (req, res) {
 		});
 };
 
+ingredient.list = function (req, res) {
+
+    ingredientDB.find()
+		.exec(function (err, ingredients) {
+			if (err) {
+				console.log('error occured');
+			} else {
+				res.render('ingredientList2', { 'x': ingredients });
+			};
+        });
+};
+
 module.exports = ingredient;

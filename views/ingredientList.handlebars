@@ -1,3 +1,16 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+
+<h1 class="title">Burger Joint Ingredient Inventory System</h1>
+
+<form id="newIngredient" action="ingredients" method="POST">
+Ingredient: <br>
+<input type="text" name="name"><br>
+Price: <br>
+<input type="number" name="price"><br>
+<input type="submit" value="Add">
+</form>
+
+<div id="result">
 <h1>Ingredient list:</h1>
 {{#each x}}
 	<div class="body">
@@ -7,3 +20,4 @@
 	<br>
 	</div>
 {{/each}}
+</div>
