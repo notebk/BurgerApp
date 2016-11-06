@@ -26,7 +26,7 @@ $new.on("submit",function(event) {
          console.log('success', data);
      })
      .error(onError);
-    $("#result").load("/ingredientsList");
+    $("#result").load("/ingredients #list");
 });
 
 /* $list.on("click", function(event) {

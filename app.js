@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index.home);
 app.get('/ingredients', reqHandler.new);
-app.get('/ingredientsList', reqHandler.list);
 app.post('/ingredients/add', reqHandler.getIngredientsPOST);
 
 mongoose.connect('mongodb://localhost/ingredients');
