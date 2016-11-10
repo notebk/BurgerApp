@@ -1,55 +1,74 @@
 var $new = $("#newIngredient");
-/* var $list = $("#displayCats");
-var $kill = $("#killCat");
-var $color = $("#colorSubmit");
-var $write = $("#colorWrite");
-*/
-// var onSuccess = function(data, status) {
-//    $("#result").load("/ingredients");
-//};
+var $edit = $("#editIngredient");
+var $order = $("#order");
 
-var onError = function(data, status) {
-  console.log("status", status);
-  console.log("error", data);
+
+var onError = function (data, status) {
+    console.log("status", status);
+    console.log("error", data);
 };
 
-$new.on("submit",function(event) {
-    event.preventDefault();
+$new.on("submit", function (event) {
     event.stopImmediatePropagation();
+    event.preventDefault();
     var name = $new.find("[name='name']").val();
     var price = $new.find("[name='price']").val();
     $.post("ingredients/add", {
         name: name,
         price: price
     })
-     .done(function(data) {
-         console.log('success', data);
-     })
-     .error(onError);
-    $("#result").load("/ingredients #list");
+        .done($("#result").load("/ingredients #list"))
+        .error(onError);
+
+
 });
 
-/* $list.on("click", function(event) {
+$edit.on("submit", function (event) {
     event.stopImmediatePropagation();
-    $.get("cats")
-     .done(onSuccess)
-     .error(onError);
+    event.preventDefault();
+    var name = $edit.find("[name='name']").val();
+    var price = $edit.find("[name='price']").val();
+    var stock = $edit.find("input[name='inStock']:checked").val();
+    $.post("ingredients/edit", {
+        name: name,
+        price: price,
+        inStock: stock
+    })
+        .done($("#result").load("/ingredients #list"))
+        .error(onError);
 });
 
-$kill.on("click", function(event) {
-    event.stopImmediatePropagation();
-    $.get("cats/delete/old")
-    $.get("cats")
-     .done(onSuccess)
-     .error(onError);
+$(document).ready(function () {
+    var sum = 0;
+    $("#cost").html(0);
+    function recalculate() {
+        var sum = 0;
+
+        $("input[type=checkbox]:checked").each(function () {
+            sum += parseFloat($(this).attr("value"));
+        });
+
+        $("#cost").html(sum);
+    }
+
+    $("input[type=checkbox]").change(function () {
+        recalculate();
+    });
 });
 
-$color.on("click", function(event) {
+$order.on("submit", function (event) {
     event.stopImmediatePropagation();
-    var color = $write.val();
-    $.get("/cats/bycolor/" + color)
-     .done(onSuccess)
-     .error(onError);
+    event.preventDefault();
+    var customer = $order.find("[name='customer']").val();
+    var ingredients = [];
+    $("input:checkbox[id='orderIng']:checked").each(function(){
+    ingredients.push($(this).attr('name'));
+    });
+    $.post("order/new", {
+        customer: customer,
+        ingredients: ingredients,
+    })
+        .done($("#result").html("All set!"))
+        .error(onError);
 });
-*/
 

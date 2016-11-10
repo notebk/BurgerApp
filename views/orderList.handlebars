@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+
+<h1 class="title">Burger Joint Ingredient Inventory System</h1>
+
+<div id="result">
+	<div id="list">
+		<h1>Pending Orders:</h1>
+		{{#each order}}
+		<div class="body">
+			Customer: {{customer}} <br> Ingredients: {{ingredients}} <br>
+			<button name="completed">Finalize</button>
+            <br>
+			<br>
+		</div>
+		{{/each}}
+	</div>
+</div>

@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 // order schema
 var orderSchema = mongoose.Schema({
   customer: String,
-  ingredients: [String],
-  Cost: Number
+  ingredients: [],
+  cost: Number
 });
 
-module.exports = mongoose.model("order", orderSchema);
+module.exports = mongoose.model("orderdb", orderSchema);

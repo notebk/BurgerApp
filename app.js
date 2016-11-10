@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var reqHandler = require('./routes/reqHandler');
 var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(logger('dev'));
@@ -21,6 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', index.home);
 app.get('/ingredients', reqHandler.new);
 app.post('/ingredients/add', reqHandler.getIngredientsPOST);
+app.post('/ingredients/edit', reqHandler.editIngredientsPOST);
+app.get('/order', reqHandler.order);
+app.post('/order/new', reqHandler.newOrder);
+app.get('/kitchen', reqHandler.kitchen);
 
 mongoose.connect('mongodb://localhost/ingredients');
 

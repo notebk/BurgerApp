@@ -2,24 +2,38 @@
 
 <h1 class="title">Burger Joint Ingredient Inventory System</h1>
 
+
 <form id="newIngredient" action="ingredients" method="POST">
-Ingredient: <br>
-<input type="text" name="name"><br>
-Price: <br>
-<input type="number" name="price"><br>
-<input type="submit" value="Add">
+	<h3>Add a New Ingredient</h3>
+	Ingredient: <br>
+	<input type="text" name="name"><br> Price: <br>
+	<input type="number" step="any" min="0" name="price"><br>
+	<input type="submit" value="Add">
 </form>
+<br>
+<br>
+<form id="editIngredient" action="ingredients" method="POST">
+	<h3>Edit an Ingredient</h3>
+	Ingredient to Edit: <br>
+	<input type="text" name="name"><br>
+	<br> New Price: <br>
+	<input type="number" step="any" min="0" name="price"><br>
+	<br> Available? <br>
+	<input type="radio" name="inStock" value="true" checked="checked">True<br>
+	<input type="radio" name="inStock" value="false">False<br>
+	<br>
+	<input type="submit" value="Update">
+</form>
+<div></div>
 
 <div id="result">
-<div id="list">
-<h1>Ingredient list:</h1>
-{{#each x}}
-	<div class="body">
-	Ingredient: {{name}} <br>
-	Price: {{price}} <br>
-	Available: {{inStock}} <br>
-	<br>
+	<div id="list">
+		<h1>Ingredient list:</h1>
+		{{#each x}}
+		<div class="body">
+			Ingredient: {{name}} <br> Price: {{price}} <br> Available: {{inStock}} <br>
+			<br>
+		</div>
+		{{/each}}
 	</div>
-{{/each}}
-</div>
 </div>
