@@ -1,6 +1,7 @@
 var $new = $("#newIngredient");
 var $edit = $("#editIngredient");
 var $order = $("#order");
+var $complete = $(".completed");
 
 
 var onError = function (data, status) {
@@ -71,4 +72,12 @@ $order.on("submit", function (event) {
         .done($("#result").html("All set!"))
         .error(onError);
 });
-
+//$(document).ready(function(){
+$("#result").on("click",".completed",function (event) {
+ //   event.stopImmediatePropagation();
+     var customer = $(this).attr("value");
+    $.post("kitchen/delete", {customer: customer})
+        .done($("#result").load("/kitchen #list"))
+        .error(onError);
+});
+//});

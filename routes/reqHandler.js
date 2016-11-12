@@ -99,4 +99,18 @@ ingredient.kitchen = function (req, res) {
         });
 }
 
+ingredient.delete = function (req, res) {
+    var customer = req.body.customer;
+    orderDB.remove({"customer": customer})
+        .exec(function (err, order) {
+            if (err) {
+                console.log('error occurred');
+                return;
+            } else {
+                res.send(".");
+            }
+        });
+    
+}
+
 module.exports = ingredient;

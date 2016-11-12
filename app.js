@@ -25,6 +25,7 @@ app.post('/ingredients/edit', reqHandler.editIngredientsPOST);
 app.get('/order', reqHandler.order);
 app.post('/order/new', reqHandler.newOrder);
 app.get('/kitchen', reqHandler.kitchen);
+app.post('/kitchen/delete', reqHandler.delete);
 
 mongoose.connect('mongodb://localhost/ingredients');
 
